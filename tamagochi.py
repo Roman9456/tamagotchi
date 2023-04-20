@@ -1,5 +1,10 @@
 import random
+import schedule # Модуль планировщик
 import time
+
+# def randome_status():
+
+
 class Tamagotchi:
     def __init__(self, name):
         self.name = name
