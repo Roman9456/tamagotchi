@@ -1,3 +1,5 @@
+import random
+import time
 class Tamagotchi:
     def __init__(self, name):
         self.name = name
