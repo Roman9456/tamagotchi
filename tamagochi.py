@@ -1,71 +1,45 @@
-class Tamagotchi:
-    def __init__(self, name):
-        self.name = name
-        self.hunger = 50
-        self.health = 50
-        self.happiness = 50
+    def make_sound(self):
+        print(self.sound)
 
-    def feed(self):
-        self.hunger -= 10
-        self.happiness += 10
-        self.check_limits()
-
-    def heal(self):
-        self.health += 10
-        self.happiness += 5
-        self.check_limits()
-
-    def play(self):
-        self.hunger += 10
-        self.happiness += 20
-        self.check_limits()
-
-    def check_limits(self):
-        if self.hunger > 100:
-            self.hunger = 100
-        elif self.hunger < 0:
-            self.hunger = 0
-
-        if self.health > 100:
-            self.health = 100
-        elif self.health < 0:
-            self.health = 0
-
-        if self.happiness > 100:
-            self.happiness = 100
-        elif self.happiness < 0:
-            self.happiness = 0
-
-    def status(self):
-        print(f"Имя: {self.name}")
-        print(f"Голод: {self.hunger}")
-        print(f"Здоровье: {self.health}")
-        print(f"Счастье: {self.happiness}")
 
 def main():
-    name = input("Введите имя тамагочи: ")
-    tamagotchi = Tamagotchi(name)
+    animal = input("Выберите животное (кот, собака, попугай): ")
+
+    if animal == "кот":
+        name = input("Введите имя кота: ")
+        pet = Cat(name)
+    elif animal == "собака":
+        name = input("Введите имя собаки: ")
+        pet = Dog(name)
+    elif animal == "попугай":
+        name = input("Введите имя попугая: ")
+        pet = Parrot(name)
+    else:
+        print("Неизвестное животное")
+        return
 
     while True:
-        tamagotchi.status()
+        pet.status()
 
         action = input("Что вы хотите сделать? (кормить, лечить, играть): ")
 
         if action == "кормить":
-            tamagotchi.feed()
+            pet.feed()
         elif action == "лечить":
-            tamagotchi.heal()
+            pet.heal()
         elif action == "играть":
-            tamagotchi.play()
+            pet.play()
         else:
             print("Неизвестное действие")
 
-        if tamagotchi.happiness <= 0:
-            print("Тамагочи ушел в депрессию и умер...")
+        if pet.happiness <= 0:
+            print(f"{pet.species} {pet.name} ушел в депрессию и умер...")
             break
-        elif tamagotchi.hunger >= 100 or tamagotchi.health <= 0:
-            print("Тамагочи умер от голода или болезни...")
+        elif pet.hunger >= 100 or pet.health <= 0:
+            print(f"{pet.species} {pet.name} умер от голода или болезни...")
             break
+
+    print("Игра окончена.")
 
 if __name__ == "__main__":
     main()
